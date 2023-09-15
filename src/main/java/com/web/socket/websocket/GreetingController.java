@@ -10,7 +10,9 @@ public class GreetingController {
 
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
-    public Greeting greet(HelloMessage helloMessage) {
-        return new Greeting("Hello, " + HtmlUtils.htmlEscape(helloMessage.getName()));
+    public Greeting greet(HelloMessage message) throws InterruptedException {
+        Thread.sleep(2000);
+        return new Greeting("Hello, " +
+                HtmlUtils.htmlEscape(message.getName()));
     }
 }
